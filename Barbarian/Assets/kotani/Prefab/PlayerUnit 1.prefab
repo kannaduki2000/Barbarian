@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 5
-  atk: 1
+  atk: 2
   moveSpeed: 5
   atkSpeed: 1
   hp: 0

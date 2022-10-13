@@ -22,6 +22,9 @@ public class PlayerUnit : PlayerUnitBase
     private Rigidbody2D unitRb = null;  //自分のRigtBody2d格納用
     private GameObject enemyObj = null;
     private bool attackStackFlag = false;
+    private DamagePopUp damagePopUp;
+    [SerializeField]
+	private HitStopTimeManager timeManager;
 
     #endregion
 
@@ -30,6 +33,8 @@ public class PlayerUnit : PlayerUnitBase
         try{
         unitObj = this.gameObject;
         unitRb = unitObj.GetComponent<Rigidbody2D>();
+        timeManager = GameObject.Find ("HitStopManager").GetComponent<HitStopTimeManager>();
+        damagePopUp = GameObject.Find ("DamagePopUp").GetComponent<DamagePopUp>();
         }catch(Exception e)
         {
             Console.WriteLine(e);
@@ -86,15 +91,17 @@ public class PlayerUnit : PlayerUnitBase
     private IEnumerator UnitAttack()
     {
         attackStackFlag = true;
-        yield return new WaitForSeconds(AtkSpeed);
+        //yield return new WaitForSeconds(AtkSpeed);
 
         //もしエネミーが健在なら攻撃する
         if(enemyObj != null)
         {
             Debug.Log("Attack");
+            if(enemyObj.GetComponent<EnemyUnitDemo>().Hp - Atk == 0){timeManager.SlowDown ();}
             enemyObj.GetComponent<EnemyUnitDemo>().Hp -= Atk;
+            damagePopUp.CreatePopUp(Atk);
         }
-
+        yield return new WaitForSeconds(AtkSpeed);
         attackStackFlag = false;
     }
 
