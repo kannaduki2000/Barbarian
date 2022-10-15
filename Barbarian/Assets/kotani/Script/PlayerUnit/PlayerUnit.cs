@@ -55,7 +55,6 @@ public class PlayerUnit : PlayerUnitBase
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("Hit");
             unitRb.velocity = Vector3.zero;
             unitStopFlag = true;
             enemyObj = collision.gameObject;
@@ -94,12 +93,11 @@ public class PlayerUnit : PlayerUnitBase
         //yield return new WaitForSeconds(AtkSpeed);
 
         //もしエネミーが健在なら攻撃する
-        if(enemyObj != null)
+        if(enemyObj.GetComponent<EnemyUnitDemo>().Hp >= 0)//.enemyObj != null)
         {
-            Debug.Log("Attack");
-            if(enemyObj.GetComponent<EnemyUnitDemo>().Hp - Atk == 0){timeManager.SlowDown ();}
+            if(enemyObj.GetComponent<EnemyUnitDemo>().Hp - Atk <= 0){timeManager.SlowDown ();}
             enemyObj.GetComponent<EnemyUnitDemo>().Hp -= Atk;
-            damagePopUp.CreatePopUp(Atk);
+            damagePopUp.CreatePopUp(Atk,enemyObj);
         }
         yield return new WaitForSeconds(AtkSpeed);
         attackStackFlag = false;

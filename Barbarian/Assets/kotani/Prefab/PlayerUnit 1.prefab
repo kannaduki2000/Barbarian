@@ -130,7 +130,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 50, y: 0}
+  m_Offset: {x: 20, y: 0}
   serializedVersion: 2
   m_Radius: 49.574364
 --- !u!1 &3990654925365555666
@@ -231,6 +231,7 @@ MonoBehaviour:
   moveSpeed: 5
   atkSpeed: 1
   hp: 0
+  timeManager: {fileID: 0}
 --- !u!50 &3990654925365555693
 Rigidbody2D:
   serializedVersion: 4

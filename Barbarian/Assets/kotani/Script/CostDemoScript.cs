@@ -11,7 +11,7 @@ public class CostDemoScript : MonoBehaviour
     ///Enemyと同じく後で消すので使わないほうが吉
     ///////////////////////////////////////////
 
-    private int MaxCost = 100;
+    private int MaxCost = 10000;
     private int nowCost=0;
     private float timeleft;
 

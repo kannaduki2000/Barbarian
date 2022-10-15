@@ -16,15 +16,16 @@ public class DamagePopUp : MonoBehaviour
         bullets.SetParent(canvas.transform,false);
     }
 
-    public void CreatePopUp(float damage)
+    public void CreatePopUp(float damage,GameObject setEnemy)
     {
+        if(enemy == null){enemy=setEnemy;}
         CreateDamageText(transform.position,damage);
     }
 
     //enemyの上にダメージを表示する
     void CreateDamageText(Vector3 enemyPoj , float damage)//表示位置と表示数値を入れる
     {
-        float rnd = Random.Range(-1f, 1f);
+        float rnd = Random.Range(-1f, 1f);//ダメージ表記を見やすくするため
         enemyPoj = enemy.GetComponent<Transform>().position;
 
         foreach (Transform t in bullets)

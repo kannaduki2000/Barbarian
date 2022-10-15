@@ -18,11 +18,11 @@ public class DamegeTextMove : MonoBehaviour
 
     void Start()
     {
-        maxTime = maxTime+1;
+        maxTime = maxTime+1;//maxtimeの再定義
         totalTime = maxTime;
         timerStop = false;
         transform.position += transform.up * 1;//ちょっと高めに出す
-        int rnd = Random.Range(1, 10);
+        
     }
 
     // Update is called once per frame
