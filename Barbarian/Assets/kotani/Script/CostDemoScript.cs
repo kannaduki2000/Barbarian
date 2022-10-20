@@ -13,6 +13,7 @@ public class CostDemoScript : MonoBehaviour
 
     private int MaxCost = 10000;
     private int nowCost=0;
+    public int NowCost { get { return nowCost; } set { nowCost = value; } }
     private float timeleft;
 
     [SerializeField]
