@@ -11,8 +11,11 @@ public class EnemyUnitDemo : PlayerUnitBase
     // Start is called before the first frame update
     // Update is called once per frame
     public int MaxHp;
+    [SerializeField]
+    private CostDemoScript costDemoScript;
     void Awake()
     {
+        costDemoScript = GameObject.Find("PlayerUnitSpawnSystem").GetComponent<CostDemoScript>();
         MaxHp = Hp;
         Hp = MaxHp;
     }
@@ -20,6 +23,7 @@ public class EnemyUnitDemo : PlayerUnitBase
     {
         if(Hp <= 0)
         {
+            costDemoScript.NowCost = costDemoScript.NowCost+Cost;
             Destroy (this.gameObject);
         }
     }
