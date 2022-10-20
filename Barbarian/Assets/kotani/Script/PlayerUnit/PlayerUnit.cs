@@ -23,8 +23,6 @@ public class PlayerUnit : PlayerUnitBase
     private GameObject enemyObj = null;
     private bool attackStackFlag = false;
     private DamagePopUp damagePopUp;
-    [SerializeField]
-	private HitStopTimeManager timeManager;
 
     #endregion
 
@@ -33,7 +31,7 @@ public class PlayerUnit : PlayerUnitBase
         try{
         unitObj = this.gameObject;
         unitRb = unitObj.GetComponent<Rigidbody2D>();
-        timeManager = GameObject.Find ("HitStopManager").GetComponent<HitStopTimeManager>();
+        //timeManager = GameObject.Find ("HitStopManager").GetComponent<HitStopTimeManager>();
         damagePopUp = GameObject.Find ("DamagePopUp").GetComponent<DamagePopUp>();
         }catch(Exception e)
         {
@@ -95,7 +93,6 @@ public class PlayerUnit : PlayerUnitBase
         //もしエネミーが健在なら攻撃する
         if(enemyObj.GetComponent<EnemyUnitDemo>().Hp >= 0)//.enemyObj != null)
         {
-            if(enemyObj.GetComponent<EnemyUnitDemo>().Hp - Atk <= 0){timeManager.SlowDown ();}
             enemyObj.GetComponent<EnemyUnitDemo>().Hp -= Atk;
             damagePopUp.CreatePopUp(Atk,enemyObj);
         }
