@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/kotani/title.unity
     guid: 0523b07c74558df49b4dccdd1cfb2fb1
   - enabled: 1
     path: Assets/kotani/PlayerUnitDemo.unity
     guid: cf2bd924c236d5a4c8353fb716a540ea
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

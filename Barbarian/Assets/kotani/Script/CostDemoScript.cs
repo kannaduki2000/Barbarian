@@ -65,6 +65,7 @@ public class CostDemoScript : MonoBehaviour
 
     private void PlayerUnitSpawn(GameObject PlayerUnit)
     {
+        float rnd = Random.Range(-0.5f, 1f);
         if(nowCost >= PlayerUnit.GetComponent<PlayerUnit>().Cost)
         {
             nowCost -=PlayerUnit.GetComponent<PlayerUnit>().Cost;
@@ -72,6 +73,8 @@ public class CostDemoScript : MonoBehaviour
             var obj = Instantiate(PlayerUnit);
             obj.transform.SetParent(PlayerUnitPrefabParent,false);
             obj.transform.position = PlayerUnitPrefabParent.position;
+            obj.transform.position =new Vector3(obj.transform.position.x,PlayerUnitPrefabParent.position.y+rnd,obj.transform.position.z);
+
         }
     }
 }
