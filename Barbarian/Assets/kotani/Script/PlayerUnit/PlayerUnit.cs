@@ -23,16 +23,20 @@ public class PlayerUnit : PlayerUnitBase
     private GameObject enemyObj = null;
     private bool attackStackFlag = false;
     private DamagePopUp damagePopUp;
+    private TimerDemo timerDemo;
+    private Count count;
 
     #endregion
 
     void Start()
     {
+        timerDemo =GameObject.Find("PlayerUnitSpawnSystem").GetComponent<TimerDemo>();
+        count =GameObject.Find("CountObject").GetComponent<Count>();
         try{
         unitObj = this.gameObject;
         unitRb = unitObj.GetComponent<Rigidbody2D>();
         //timeManager = GameObject.Find ("HitStopManager").GetComponent<HitStopTimeManager>();
-        damagePopUp = GameObject.Find ("DamagePopUp").GetComponent<DamagePopUp>();
+        damagePopUp = GameObject.Find("DamagePopUp").GetComponent<DamagePopUp>();
         }catch(Exception e)
         {
             Console.WriteLine(e);
@@ -45,7 +49,9 @@ public class PlayerUnit : PlayerUnitBase
     // Update is called once per frame
     void Update()
     {
+        if(timerDemo.CountDownTime>=0.01f){
         UnitMove();
+        }
     }
 
     //子オブジェクトのisTriggerの判定を拾ってる
@@ -93,6 +99,7 @@ public class PlayerUnit : PlayerUnitBase
         //もしエネミーが健在なら攻撃する
         if(enemyObj.GetComponent<EnemyUnitDemo>().Hp >= 0)//.enemyObj != null)
         {
+            count.dmj += Atk;
             enemyObj.GetComponent<EnemyUnitDemo>().Hp -= Atk;
             damagePopUp.CreatePopUp(Atk,enemyObj);
         }

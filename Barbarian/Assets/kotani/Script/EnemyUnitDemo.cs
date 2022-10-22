@@ -13,17 +13,21 @@ public class EnemyUnitDemo : PlayerUnitBase
     public int MaxHp;
     [SerializeField]
     private CostDemoScript costDemoScript;
+    private Count count;
+
     void Awake()
     {
         costDemoScript = GameObject.Find("PlayerUnitSpawnSystem").GetComponent<CostDemoScript>();
         MaxHp = Hp;
         Hp = MaxHp;
+        count =GameObject.Find("CountObject").GetComponent<Count>();
     }
     void Update()
     {
         if(Hp <= 0)
         {
             costDemoScript.NowCost = costDemoScript.NowCost+Cost;
+            count.obj += 1;
             Destroy (this.gameObject);
         }
     }
